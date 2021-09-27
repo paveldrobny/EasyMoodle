@@ -17,7 +17,7 @@ body, html {
     height: 100%;
     user-select: none;
     font-family: 'Open Sans', sans-serif;
-    background: var(--title-bar-color);
+    background: rgb(47, 47, 47);
 }
 
 #app {
@@ -77,6 +77,7 @@ body, html {
 
 .menu-bar {
     position: relative;
+    display: inline-block;
     width: calc(100% - 10px);
     height: 36px;
     line-height: 36px;
@@ -115,7 +116,19 @@ body, html {
     background: rgb(71, 71, 71);
 }
 
-.fa-arrow-left, .fa-arrow-right, .fa-redo, .fa-home, .fa-wrench {
+.nav-btn.other {
+    cursor: default;
+    width: 5px;
+    background:none
+}
+
+.line {
+    width: 1px;
+    height: 10px;
+    background: rgb(167, 167, 167);
+}
+
+.fa-arrow-left, .fa-arrow-right, .fa-redo, .fa-home, .fa-wrench, .fa-window-maximize {
     font-size: 16px;
     color: white;
 }
@@ -144,6 +157,7 @@ body, html {
 
 #web-view {
     position: relative;
+    top: -3px;
     left: 1px;
     width: calc(100% - 2px);
     height: calc(100% - 69px);
@@ -155,6 +169,7 @@ body, html {
     width: calc(300px - 4px);
     height: calc(100px - 4px);
     border: 2px solid rgb(58, 58, 58);
+    background: var(--title-bar-color);
 }
 
 #updater-title {

@@ -1,3 +1,5 @@
+const { ipcRenderer } = require("electron");
+
 const electron = window.require("electron");
 
 const webView = document.querySelector("webview"),
@@ -9,6 +11,7 @@ const webView = document.querySelector("webview"),
   viewRefresh = document.getElementById("view-refresh"),
   viewHome = document.getElementById("view-home"),
   viewDevTools = document.getElementById("view-devTools"),
+  viewAppTools = document.getElementById("view-appTools"),
   timerAction = document.getElementById("timer-action"),
   remainingTime = document.getElementById("remaining-time");
 // title = document.getElementById("page-title");
@@ -101,6 +104,10 @@ viewDevTools.addEventListener("click", function () {
   webView.openDevTools();
 });
 
+viewAppTools.addEventListener("click", function () {
+  ipcRenderer.send("app-code");
+});
+
 const loadLink = (target) => {
   webView.src = target;
 };
@@ -115,17 +122,17 @@ const checkCourse = () => {
     mounth = date.getMonth(),
     _date = date.getDate(),
     //
-    startFirstPair = new Date(2021, mounth, _date, 8, 0),
-    endFirstPair = new Date(2021, mounth, _date, 9, 35),
+    startFirstPair = new Date(2021, mounth, _date, 7, 55),
+    endFirstPair = new Date(2021, mounth, _date, 9, 30),
     //
-    startSecondPair = new Date(2021, mounth, _date, 9, 55),
-    endSecondPair = new Date(2021, mounth, _date, 11, 30),
+    startSecondPair = new Date(2021, mounth, _date, 9, 50),
+    endSecondPair = new Date(2021, mounth, _date, 11, 25),
     //
-    startThirdPair = new Date(2021, mounth, _date, 11, 45),
-    endThirdPair = new Date(2021, mounth, _date, 13, 20),
+    startThirdPair = new Date(2021, mounth, _date, 11, 40),
+    endThirdPair = new Date(2021, mounth, _date, 13, 15),
     //
-    startFourthPair = new Date(2021, mounth, _date, 13, 35),
-    endFourthPair = new Date(2021, mounth, _date, 15, 10);
+    startFourthPair = new Date(2021, mounth, _date, 13, 30),
+    endFourthPair = new Date(2021, mounth, _date, 15, 0);
 
   //////////////////////////////////////////////////////////////
   if (day == 1) {

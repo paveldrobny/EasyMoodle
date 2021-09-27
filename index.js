@@ -37,7 +37,6 @@ function createWindow() {
     },
   });
 
-  // mainWindow.webContents.openDevTools();
   mainWindow.hide();
   mainWindow.loadFile("index.html");
 
@@ -51,6 +50,14 @@ function createWindow() {
 
   ipcMain.on("app-close", () => {
     mainWindow.close();
+  });
+
+  ipcMain.on("app-code", () => {
+    if (mainWindow.webContents.isDevToolsOpened()) {
+      mainWindow.webContents.closeDevTools();
+    }else{
+      mainWindow.webContents.openDevTools();
+    }
   });
 }
 
@@ -77,7 +84,6 @@ function createUpdater() {
   });
 
   updateWindow.loadFile("update.html");
-  //updateWindow.webContents.openDevTools();
 }
 
 app.whenReady().then(() => {
