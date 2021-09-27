@@ -1,4 +1,7 @@
 node_modules
 dist/
 yarn.lock
+<<<<<<< HEAD
 yarn-error.log
+=======
+>>>>>>> 13268fe35186cda052c35e273e15c8ba6807f1eb
