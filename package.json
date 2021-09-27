@@ -1,28 +1,33 @@
 {
   "name": "easyadi",
-  "version": "0.3.5",
+  "version": "0.3.4",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "electron .",
-    "publish": "build -p always"
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
   },
   "author": "PD",
   "license": "ISC",
-  "dependencies": {
+  "devDependencies": {
     "electron": "^15.0.0",
+    "electron-builder": "^22.11.7"
+  },
+  "dependencies": {
+    "electron-log": "^4.4.1",
     "electron-updater": "^4.3.9",
     "i": "^0.3.7"
   },
   "build": {
+    "appId": "com.github.paveldrobny.EasyMoodle",
     "publish": [
       {
         "provider": "github",
-        "owner": "iffy",
-        "repo": "electron-updater-example"
+        "owner": "paveldrobny",
+        "repo": "EasyMoodle"
       }
     ],
-    "appId": "com.github.iffy.electronupdaterexample",
     "mac": {
       "category": "your.app.category.type",
       "target": [

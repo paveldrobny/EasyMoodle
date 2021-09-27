@@ -1,24 +1,37 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Electron Updater Example</title>
-</head>
-<body>
-  Current version: <span id="version">vX.Y.Z</span>
-  <div id="messages"></div>
-<script>
-// Display the current version
-let version = window.location.hash.substring(1);
-document.getElementById('version').innerText = version;
+  <head>
+    <link rel="stylesheet" href="./styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+    />
+    <title>Easy ADI Updater</title>
+  </head>
+  <body>
+    <div id="updater-app">
+      <div id="updater-title">Easy ADI Updater X.Y.Z</div>
+      <div id="messages">
+        <div id="messages-content"></div>
+      </div>
+    </div>
 
-// Listen for messages
-const {ipcRenderer} = require('electron');
-ipcRenderer.on('message', function(event, text) {
-  var container = document.getElementById('messages');
-  var message = document.createElement('div');
-  message.innerHTML = text;
-  container.appendChild(message);
-})
-</script>
-</body>
+    <script>
+      const electron = window.require("electron");
+      const appVersion = require("./package.json").version;
+      const appName = "Easy ADI Updater";
+      document.getElementById("updater-title").innerHTML = `${appName} v${appVersion}`;
+
+      setInterval(function () {
+        electron.ipcRenderer.send("window-update");
+      }, 2000);
+
+      electron.ipcRenderer.on("message", function (event, text) {
+        var container = document.getElementById("messages-content");
+        var message = document.createElement("div");
+        message.innerHTML = text;
+        container.appendChild(message);
+      });
+    </script>
+  </body>
 </html>

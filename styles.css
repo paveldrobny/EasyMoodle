@@ -17,7 +17,7 @@ body, html {
     height: 100%;
     user-select: none;
     font-family: 'Open Sans', sans-serif;
-    background: rgb(59, 59, 59);
+    background: var(--title-bar-color);
 }
 
 #app {
@@ -147,4 +147,37 @@ body, html {
     left: 1px;
     width: calc(100% - 2px);
     height: calc(100% - 69px);
+}
+
+/* Updater */
+
+#updater-app {
+    width: calc(300px - 4px);
+    height: calc(100px - 4px);
+    border: 2px solid rgb(58, 58, 58);
+}
+
+#updater-title {
+    position: relative;
+    display: inline;
+    padding: 3px 3px;
+    top: 6px;
+    left: 3px;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    border-radius: 3px;
+    background: white;
+}
+
+#messages {
+    position: relative;
+    display: flex;
+    flex-direction: column-reverse;
+    top: 33px;
+    height: 18px;
+    text-align: center;
+    font-size: 17px;
+    overflow: hidden;
+    letter-spacing: 1px;
+    color: rgb(235, 235, 235);
 }

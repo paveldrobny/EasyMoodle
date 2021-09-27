@@ -1,5 +1,6 @@
 const { app, BrowserWindow, ipcMain } = require("electron");
 const path = require("path");
+const log = require("electron-log");
 const { autoUpdater } = require("electron-updater");
 
 let mainWindow, updateWindow;
@@ -7,6 +8,14 @@ let mainWindow, updateWindow;
 autoUpdater.logger = log;
 autoUpdater.logger.transports.file.level = "info";
 log.info("App starting...");
+
+const sendStatusToWindow = (text) => {
+  log.info(text);
+
+  ipcMain.on("window-update", (event) => {
+    event.sender.send("message", text);
+  });
+};
 
 function createWindow() {
   const size = {
@@ -47,8 +56,8 @@ function createWindow() {
 
 function createUpdater() {
   const size = {
-    width: 860,
-    height: 590,
+    width: 300,
+    height: 100,
   };
 
   updateWindow = new BrowserWindow({
@@ -58,19 +67,23 @@ function createUpdater() {
     minHeight: size.height,
     maxWidth: size.width,
     maxHeight: size.height,
+    resizable: false,
+    movable: false,
     frame: false,
     webPreferences: {
       nodeIntegration: true,
+      contextIsolation: false,
     },
   });
 
   updateWindow.loadFile("update.html");
+  //updateWindow.webContents.openDevTools();
 }
 
 app.whenReady().then(() => {
   log.info("starting update check");
   autoUpdater.checkForUpdatesAndNotify();
-  createWindow();
+  //createWindow();
   createUpdater();
 
   app.on("activate", function () {
@@ -82,36 +95,31 @@ app.on("window-all-closed", function () {
   if (process.platform !== "darwin") app.quit();
 });
 
-function sendStatusToWindow(text) {
-  log.info(text);
-  win.webContents.send("message", text);
-}
-
 // UPDATE EVENTS
 autoUpdater.on("checking-for-update", () => {
   sendStatusToWindow("Checking for update...");
 });
+
 autoUpdater.on("update-available", (info) => {
   sendStatusToWindow("Update available.");
 });
+
 autoUpdater.on("update-not-available", (info) => {
   sendStatusToWindow("Update not available.");
+  mainWindow.show();
+  updateWindow.close();
 });
+
 autoUpdater.on("error", (err) => {
   sendStatusToWindow("Error in auto-updater. " + err);
 });
+
 autoUpdater.on("download-progress", (progressObj) => {
-  let log_message = "Download speed: " + progressObj.bytesPerSecond;
-  log_message = log_message + " - Downloaded " + progressObj.percent + "%";
-  log_message =
-    log_message +
-    " (" +
-    progressObj.transferred +
-    "/" +
-    progressObj.total +
-    ")";
+  let log_message = `Downloaded: ${progressObj.percent.toFixed(1)}%`;
   sendStatusToWindow(log_message);
 });
+
 autoUpdater.on("update-downloaded", (info) => {
   sendStatusToWindow("Update downloaded");
+  autoUpdater.quitAndInstall();
 });
