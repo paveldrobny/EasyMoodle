@@ -83,7 +83,7 @@ function createUpdater() {
 app.whenReady().then(() => {
   log.info("starting update check");
   autoUpdater.checkForUpdatesAndNotify();
-  //createWindow();
+  createWindow();
   createUpdater();
 
   app.on("activate", function () {
