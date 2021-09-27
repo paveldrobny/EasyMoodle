@@ -1,0 +1,150 @@
+* {
+    outline: none;
+    border: none;
+}
+
+button {
+    cursor: pointer;
+}
+
+:root {
+    --title-bar-color: rgb(32, 32, 32);
+}
+
+body, html {
+    margin: 0;
+    overflow: hidden;
+    height: 100%;
+    user-select: none;
+    font-family: 'Open Sans', sans-serif;
+    background: rgb(59, 59, 59);
+}
+
+#app {
+    margin: 1px;
+    overflow: hidden;
+}
+
+.draggable {
+    -webkit-app-region: drag;
+}
+
+.no-draggable {
+    -webkit-app-region: no-drag;
+}
+
+.title-bar {
+    z-index: 99999;
+    position: relative;
+    width: 100%;
+    height: 29px;
+    background: var(--title-bar-color);
+}
+
+.title-bar-left {
+    float: left;
+    color: white;
+    padding-left: 10px;
+    height: 29px;
+    line-height: 29px;
+}
+
+.title-bar-name {
+    float: left;
+    font-size: 15px;
+}
+
+.title-bar-right {
+    float: right;
+}
+
+.title-bar-button {
+    float: left;
+    overflow: hidden;
+    position: relative;
+    width: 45px;
+    height: 29px;
+    background: transparent;
+}
+
+#min-btn:hover, #max-btn:hover {
+    background: rgb(87, 87, 87);
+}
+
+#close-btn:hover {
+    background: rgb(209, 0, 0);
+}
+
+.menu-bar {
+    position: relative;
+    width: calc(100% - 10px);
+    height: 36px;
+    line-height: 36px;
+    padding: 0 5px;
+    border-bottom: 1px solid black;
+    background: var(--title-bar-color);
+}
+
+.menu-bar-left, .menu-bar-center, .menu-bar-right {
+    display: inline-block;
+    overflow: hidden;
+}
+
+/* .menu-bar-center {
+    color: white;
+    text-overflow: ellipsis;
+    padding: 0 10px;
+    text-align: center;
+    white-space: nowrap;
+    width: calc(100% - 300px);
+} */
+
+.menu-bar-right {
+    float: right;
+}
+
+.nav-btn {
+    border-radius: 50px;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    background: none;
+}
+
+.nav-btn:hover {
+    background: rgb(71, 71, 71);
+}
+
+.fa-arrow-left, .fa-arrow-right, .fa-redo, .fa-home, .fa-wrench {
+    font-size: 16px;
+    color: white;
+}
+
+#timer-action {
+    position: relative;
+    bottom: 1px;
+    border-radius: 5px;
+    color: white;
+    padding: 5px 8px;
+    margin: 0 11px;
+    background: rgb(0, 153, 255);
+}
+
+#timer-action.is-start {
+    background: rgb(182, 31, 31);
+}
+
+#remaining-time {
+    float: right;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: rgb(235, 235, 235);
+}
+
+#web-view {
+    position: relative;
+    left: 1px;
+    width: calc(100% - 2px);
+    height: calc(100% - 69px);
+}

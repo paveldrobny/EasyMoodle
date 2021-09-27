@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+    />
+    <title>Easy ADI</title>
+  </head>
+  <body>
+    <div id="app">
+      <div class="title-bar draggable">
+        <div class="title-bar-left">
+          <div class="title-bar-name">Easy ADI</div>
+        </div>
+        <div class="title-bar-right">
+          <button id="min-btn" class="title-bar-button no-draggable">
+            <svg width="10px" height="5px">
+              <image
+                x="0px"
+                y="0px"
+                width="10px"
+                height="1px"
+                xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAABAQAAAADPjgLTAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QAAd2KE6QAAAAHdElNRQflBxATJzCKGDT+AAAAC0lEQVQI12P4fwAAAsEBwIB8nmYAAAAASUVORK5CYII="
+              />
+            </svg>
+          </button>
+          <button id="max-btn" class="title-bar-button no-draggable">
+            <svg width="10px" height="10px">
+              <image
+                x="0px"
+                y="0px"
+                width="10px"
+                height="10px"
+                xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAQAAAAnOwc2AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQflBxATJjJ9DWSTAAAAIUlEQVQI12P8/58BAzAxfGRgRIMfmRgYsKkcSEFGbI4HACQKBfnSevKYAAAAAElFTkSuQmCC"
+              />
+            </svg>
+          </button>
+          <button id="close-btn" class="title-bar-button no-draggable">
+            <svg width="10px" height="10px">
+              <image
+                x="0px"
+                y="0px"
+                width="10px"
+                height="10px"
+                xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAQAAAAnOwc2AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQflBxATLDPw5byPAAAAQklEQVQI123Oyw0AIAhEwY21If139DyAG0yUg2QIHwEbjQgQ+XAAKcQ2B5Co6sVNF4ub0NJ8+He7Z7+LOptk1u/4A3MrdKxL0Sj2AAAAAElFTkSuQmCC"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="menu-bar">
+        <div class="menu-bar-left">
+          <button id="view-back" class="nav-btn">
+            <i class="fas fa-arrow-left"></i>
+          </button>
+          <button id="view-forward" class="nav-btn">
+            <i class="fas fa-arrow-right"></i>
+          </button>
+          <button id="view-refresh" class="nav-btn">
+            <i class="fas fa-redo"></i>
+          </button>
+          <button id="view-home" class="nav-btn">
+            <i class="fas fa-home"></i>
+          </button>
+          <button id="view-devTools" class="nav-btn">
+            <i class="fas fa-wrench"></i>
+          </button>
+        </div>
+        <!-- <div class="menu-bar-center" id="page-title"></div> -->
+        <div class="menu-bar-right">
+          <button id="timer-action">СТАРТ</button>
+          <div id="remaining-time">00:00</div>
+        </div>
+      </div>
+    </div>
+    <webview id="web-view" src="http://e.adidonntu.ru/"></webview>
+
+    <script src="./event.js" type="module"></script>
+  </body>
+</html>
