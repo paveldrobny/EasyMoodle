@@ -20,9 +20,6 @@ const webView = document.querySelector("webview"),
   updateApp = document.getElementById("update-ready-button");
 // title = document.getElementById("page-title");
 
-// webView.addEventListener("update-target-url", () => {
-//   title.innerHTML = webView.getURL();
-// });
 
 const checkVersion = () => {
   setInterval(function () {
