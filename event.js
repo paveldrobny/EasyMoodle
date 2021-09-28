@@ -19,6 +19,9 @@ const webView = document.querySelector("webview"),
   updateReady = document.getElementsByClassName("update-ready"),
   updateApp = document.getElementById("update-ready-button");
 
+let sd = document.getElementById("Sd"),
+  sdd = document.getElementById("Sdd");
+
 const checkVersion = () => {
   setInterval(function () {
     fetch(URL)
@@ -28,7 +31,7 @@ const checkVersion = () => {
         if (SITE_VERSION == version) {
           updateReady[0].classList.remove("is-show");
         } else {
-          updateReady[0].classList.remove("is-show");
+          updateReady[0].classList.add("is-show");
         }
       })
       .catch((err) => {
