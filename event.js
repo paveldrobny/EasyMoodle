@@ -19,9 +19,7 @@ const webView = document.querySelector("webview"),
   updateReady = document.getElementsByClassName("update-ready"),
   updateApp = document.getElementById("update-ready-button");
 
-let sd = document.getElementById("Sd"),
-  sdd = document.getElementById("Sdd");
-
+  
 const checkVersion = () => {
   setInterval(function () {
     fetch(URL)
@@ -32,8 +30,6 @@ const checkVersion = () => {
         } else {
           updateReady[0].classList.add("is-show");
         }
-        sd.innerHTML = `test 1 - ${SITE_VERSION}`;
-        sdd.innerHTML = `test 2 - ${out.commit.commit.author.date}`;
       })
       .catch((err) => {
         return err;
