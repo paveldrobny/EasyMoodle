@@ -36,8 +36,8 @@ let isStart = false,
   timer,
   courseTimer;
 
-const TIME_IN_MINUTES = 4;
-const TARGET_TIME = TIME_IN_MINUTES * 60;
+const TIME_IN_MINUTES = 1;
+const TARGET_TIME = TIME_IN_MINUTES * 30;
 
 const startAction = () => {
   timerAction.innerHTML = "СТОП";
