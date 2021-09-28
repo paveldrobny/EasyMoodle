@@ -67,6 +67,8 @@ updateApp.addEventListener("click", function () {
   electron.ipcRenderer.send("app-reload");
 });
 
+// TIMERS 
+
 let isStart = false,
   timer,
   courseTimer;
