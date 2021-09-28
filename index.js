@@ -36,7 +36,7 @@ function createWindow() {
       webSecurity: true,
     },
   });
-  mainWindow.hide();
+  //mainWindow.hide();
   mainWindow.loadURL("https://paveldrobny.github.io/EasyMoodle/");
   mainWindow.webContents.session.clearCache(() => {
     win.webContents.session.clearStorageData();

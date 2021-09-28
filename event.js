@@ -1,7 +1,8 @@
 const electron = window.require("electron");
 const URL =
-  "https://github.com/paveldrobny/paveldrobny.github.io/blob/master/Version.txt";
-const SITE_VERSION = "0.1.5";
+  "https://api.github.com/repos/paveldrobny/EasyMoodle/branches/master";
+
+let SITE_VERSION = "";
 
 const webView = document.querySelector("webview"),
   minBtn = document.getElementById("min-btn"),
@@ -25,20 +26,30 @@ const webView = document.querySelector("webview"),
 
 const checkVersion = () => {
   setInterval(function () {
-    fetch(URL).then(function (response) {
-      response.text().then(function (version) {
-        console.log(version)
+    fetch(URL)
+      .then((res) => res.json())
+      .then((out) => {
+        result = out.commit.commit.author.date.slice(0, 10);
         if (SITE_VERSION == version) {
           updateReady[0].classList.remove("is-show");
         } else {
           updateReady[0].classList.remove("is-show");
         }
+      })
+      .catch((err) => {
+        return err;
       });
-    });
   }, 5000);
 };
 
 window.addEventListener("load", function () {
+  fetch(URL)
+    .then((res) => res.json())
+    .then((out) => {
+      result = out.commit.commit.author.date.slice(0, 10);
+      SITE_VERSION = result;
+    });
+
   checkVersion();
 });
 
