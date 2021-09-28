@@ -20,13 +20,12 @@ const webView = document.querySelector("webview"),
   updateApp = document.getElementById("update-ready-button");
 // title = document.getElementById("page-title");
 
-
 const checkVersion = () => {
   setInterval(function () {
     fetch(URL)
       .then((res) => res.json())
       .then((out) => {
-        result = out.commit.commit.author.date.slice(0, 10);
+        result = out.commit.commit.author.date;
         if (SITE_VERSION == version) {
           updateReady[0].classList.remove("is-show");
         } else {
@@ -43,7 +42,7 @@ window.addEventListener("load", function () {
   fetch(URL)
     .then((res) => res.json())
     .then((out) => {
-      result = out.commit.commit.author.date.slice(0, 10);
+      result = out.commit.commit.author.date;
       SITE_VERSION = result;
     });
 
