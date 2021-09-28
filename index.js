@@ -40,6 +40,8 @@ function createWindow() {
   //mainWindow.hide();
   // mainWindow.loadFile("index.html");
   mainWindow.loadURL("https://paveldrobny.github.io/EasyMoodle/");
+  mainWindow.webContents.session.clearCache();
+  mainWindow.webContents.session.clearStorageData();
 
   ipcMain.on("app-minimize", () => {
     mainWindow.minimize();

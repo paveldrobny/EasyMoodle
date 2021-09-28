@@ -11,7 +11,7 @@ const webView = document.querySelector("webview"),
   viewRefresh = document.getElementById("view-refresh"),
   viewHome = document.getElementById("view-home"),
   viewDevTools = document.getElementById("view-devTools"),
-  viewAppTools = document.getElementById("view-appTools"),
+  //viewAppTools = document.getElementById("view-appTools"),
   timerAction = document.getElementById("timer-action"),
   remainingTime = document.getElementById("remaining-time");
 // title = document.getElementById("page-title");
@@ -104,9 +104,9 @@ viewDevTools.addEventListener("click", function () {
   webView.openDevTools();
 });
 
-viewAppTools.addEventListener("click", function () {
-  ipcRenderer.send("app-code");
-});
+// viewAppTools.addEventListener("click", function () {
+//   ipcRenderer.send("app-code");
+// });
 
 const loadLink = (target) => {
   webView.src = target;
@@ -151,9 +151,9 @@ const checkCourse = () => {
     if (checkTime(date, startFirstPair, endFirstPair)) {
       loadLink("");
     } else if (checkTime(date, startSecondPair, endSecondPair)) {
-      loadLink("https://www.google.com.ua/?hl=ru");
+      loadLink("http://e.adidonntu.ru/course/view.php?id=427");
     } else if (checkTime(date, startThirdPair, endThirdPair)) {
-      loadLink("https://www.google.com.ua/?hl=ru");
+      loadLink("http://e.adidonntu.ru/course/view.php?id=667");
     } else if (checkTime(date, startFourthPair, endFourthPair)) {
       loadLink("http://e.adidonntu.ru/course/view.php?id=427");
     }
