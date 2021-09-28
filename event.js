@@ -18,7 +18,6 @@ const webView = document.querySelector("webview"),
   remainingTime = document.getElementById("remaining-time"),
   updateReady = document.getElementsByClassName("update-ready"),
   updateApp = document.getElementById("update-ready-button");
-// title = document.getElementById("page-title");
 
 const checkVersion = () => {
   setInterval(function () {
