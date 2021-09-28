@@ -43,6 +43,7 @@ function createWindow() {
   });
   mainWindow.webContents.session.clearStorageData();
   mainWindow.webContents.reloadIgnoringCache();
+  mainWindow.webContents.openDevTools();
 
   ipcMain.on("app-minimize", () => {
     mainWindow.minimize();

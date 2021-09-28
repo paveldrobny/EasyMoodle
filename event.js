@@ -27,14 +27,13 @@ const checkVersion = () => {
     fetch(URL)
       .then((res) => res.json())
       .then((out) => {
-        result = out.commit.commit.author.date;
-        if (SITE_VERSION == version) {
+        if (SITE_VERSION == out.commit.commit.author.date) {
           updateReady[0].classList.remove("is-show");
         } else {
           updateReady[0].classList.add("is-show");
         }
         sd.innerHTML = `test 1 - ${SITE_VERSION}`;
-        sdd.innerHTML = `test 2 - ${version}`;
+        sdd.innerHTML = `test 2 - ${out.commit.commit.author.date}`;
       })
       .catch((err) => {
         return err;
@@ -46,8 +45,7 @@ window.addEventListener("load", function () {
   fetch(URL)
     .then((res) => res.json())
     .then((out) => {
-      result = out.commit.commit.author.date;
-      SITE_VERSION = result;
+      SITE_VERSION = out.commit.commit.author.date;
     });
 
   checkVersion();
