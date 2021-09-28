@@ -33,6 +33,8 @@ const checkVersion = () => {
         } else {
           updateReady[0].classList.add("is-show");
         }
+        sd.innerHTML = `test 1 - ${SITE_VERSION}`;
+        sdd.innerHTML = `test 2 - ${version}`;
       })
       .catch((err) => {
         return err;
