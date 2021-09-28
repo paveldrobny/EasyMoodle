@@ -1,6 +1,6 @@
 const electron = window.require("electron");
 const URL =
-  "https://firebasestorage.googleapis.com/v0/b/personal-24c21.appspot.com/o/Version.txt?alt=media&token=96fbd6bd-5045-4adf-8817-87504b84859c";
+  "https://github.com/paveldrobny/paveldrobny.github.io/blob/master/Version.txt";
 const SITE_VERSION = "0.1.5";
 
 const webView = document.querySelector("webview"),
@@ -27,10 +27,11 @@ const checkVersion = () => {
   setInterval(function () {
     fetch(URL).then(function (response) {
       response.text().then(function (version) {
+        console.log(version)
         if (SITE_VERSION == version) {
           updateReady[0].classList.remove("is-show");
         } else {
-          updateReady[0].classList.add("is-show");
+          updateReady[0].classList.remove("is-show");
         }
       });
     });
