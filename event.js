@@ -1,6 +1,7 @@
-const { ipcRenderer } = require("electron");
-
 const electron = window.require("electron");
+const URL =
+  "https://firebasestorage.googleapis.com/v0/b/personal-24c21.appspot.com/o/Version.txt?alt=media&token=96fbd6bd-5045-4adf-8817-87504b84859c";
+const SITE_VERSION = "0.1.5";
 
 const webView = document.querySelector("webview"),
   minBtn = document.getElementById("min-btn"),
@@ -13,12 +14,32 @@ const webView = document.querySelector("webview"),
   viewDevTools = document.getElementById("view-devTools"),
   //viewAppTools = document.getElementById("view-appTools"),
   timerAction = document.getElementById("timer-action"),
-  remainingTime = document.getElementById("remaining-time");
+  remainingTime = document.getElementById("remaining-time"),
+  updateReady = document.getElementsByClassName("update-ready"),
+  updateApp = document.getElementById("update-ready-button");
 // title = document.getElementById("page-title");
 
 // webView.addEventListener("update-target-url", () => {
 //   title.innerHTML = webView.getURL();
 // });
+
+const checkVersion = () => {
+  setInterval(function () {
+    fetch(URL).then(function (response) {
+      response.text().then(function (version) {
+        if (SITE_VERSION == version) {
+          updateReady[0].classList.remove("is-show");
+        } else {
+          updateReady[0].classList.add("is-show");
+        }
+      });
+    });
+  }, 5000);
+};
+
+window.addEventListener("load", function () {
+  checkVersion();
+});
 
 minBtn.addEventListener("click", function () {
   electron.ipcRenderer.send("app-minimize");
@@ -32,12 +53,16 @@ closeBtn.addEventListener("click", function () {
   electron.ipcRenderer.send("app-close");
 });
 
+updateApp.addEventListener("click", function () {
+  electron.ipcRenderer.send("app-reload");
+});
+
 let isStart = false,
   timer,
   courseTimer;
 
-const TIME_IN_MINUTES = 1;
-const TARGET_TIME = TIME_IN_MINUTES * 30;
+const TIME_IN_MINUTES = 4;
+const TARGET_TIME = TIME_IN_MINUTES * 60;
 
 const startAction = () => {
   timerAction.innerHTML = "СТОП";

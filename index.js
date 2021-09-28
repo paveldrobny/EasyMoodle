@@ -36,9 +36,7 @@ function createWindow() {
       webSecurity: true,
     },
   });
-
-  //mainWindow.hide();
-  // mainWindow.loadFile("index.html");
+  mainWindow.hide();
   mainWindow.loadURL("https://paveldrobny.github.io/EasyMoodle/");
   mainWindow.webContents.session.clearCache(() => {
     win.webContents.session.clearStorageData();
@@ -56,6 +54,10 @@ function createWindow() {
 
   ipcMain.on("app-close", () => {
     mainWindow.close();
+  });
+
+  ipcMain.on("app-reload", () => {
+    mainWindow.reload();
   });
 
   ipcMain.on("app-code", () => {
