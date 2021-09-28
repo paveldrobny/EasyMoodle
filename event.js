@@ -151,11 +151,11 @@ const checkCourse = () => {
     if (checkTime(date, startFirstPair, endFirstPair)) {
       loadLink("");
     } else if (checkTime(date, startSecondPair, endSecondPair)) {
-      loadLink("");
+      loadLink("http://e.adidonntu.ru/course/view.php?id=427");
     } else if (checkTime(date, startThirdPair, endThirdPair)) {
-      loadLink("");
+      loadLink("http://e.adidonntu.ru/course/view.php?id=667");
     } else if (checkTime(date, startFourthPair, endFourthPair)) {
-      loadLink("");
+      loadLink("http://e.adidonntu.ru/course/view.php?id=427");
     }
   }
   //////////////////////////////////////////////////////////////
