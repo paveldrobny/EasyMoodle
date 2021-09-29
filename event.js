@@ -194,7 +194,7 @@ const checkCourse = () => {
   //////////////////////////////////////////////////////////////
   else if (day == 3) {
     if (checkTime(date, startFirstPair, endFirstPair)) {
-      loadLink("");
+      loadLink("http://e.adidonntu.ru/course/view.php?id=536");
     } else if (checkTime(date, startSecondPair, endSecondPair)) {
       loadLink("http://e.adidonntu.ru/course/view.php?id=594");
     } else if (checkTime(date, startThirdPair, endThirdPair)) {
