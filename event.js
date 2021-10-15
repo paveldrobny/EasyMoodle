@@ -34,7 +34,7 @@ const checkVersion = () => {
       .catch((err) => {
         return err;
       });
-  }, 600000);
+  }, 5000);
 };
 
 window.addEventListener("load", function () {
@@ -69,7 +69,7 @@ let isStart = false,
   timer,
   courseTimer;
 
-const TIME_IN_MINUTES = 4;
+const TIME_IN_MINUTES = 2;
 const TARGET_TIME = TIME_IN_MINUTES * 60;
 
 const startAction = () => {
