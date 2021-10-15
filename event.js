@@ -13,7 +13,7 @@ const webView = document.querySelector("webview"),
   viewRefresh = document.getElementById("view-refresh"),
   viewHome = document.getElementById("view-home"),
   viewDevTools = document.getElementById("view-devTools"),
-  //viewAppTools = document.getElementById("view-appTools"),
+  viewAppTools = document.getElementById("view-appTools"),
   timerAction = document.getElementById("timer-action"),
   remainingTime = document.getElementById("remaining-time"),
   updateReady = document.getElementsByClassName("update-ready"),
@@ -137,9 +137,9 @@ viewDevTools.addEventListener("click", function () {
   webView.openDevTools();
 });
 
-// viewAppTools.addEventListener("click", function () {
-//   ipcRenderer.send("app-code");
-// });
+viewAppTools.addEventListener("click", function () {
+  ipcRenderer.send("app-code");
+});
 
 const loadLink = (target) => {
   webView.src = target;
@@ -170,19 +170,19 @@ const checkCourse = () => {
   //////////////////////////////////////////////////////////////
   if (day == 1) {
     if (checkTime(date, startFirstPair, endFirstPair)) {
-      loadLink("");
+      loadLink("http://e.adidonntu.ru/course/view.php?id=377");
     } else if (checkTime(date, startSecondPair, endSecondPair)) {
-      loadLink("");
+      loadLink("http://e.adidonntu.ru/course/view.php?id=377");
     } else if (checkTime(date, startThirdPair, endThirdPair)) {
-      loadLink("");
+      loadLink("http://e.adidonntu.ru/course/view.php?id=536");
     } else if (checkTime(date, startFourthPair, endFourthPair)) {
-      loadLink("");
+      loadLink("http://e.adidonntu.ru/course/view.php?id=667");
     }
   }
   //////////////////////////////////////////////////////////////
   else if (day == 2) {
     if (checkTime(date, startFirstPair, endFirstPair)) {
-      loadLink("");
+      loadLink("http://e.adidonntu.ru/course/view.php?id=442");
     } else if (checkTime(date, startSecondPair, endSecondPair)) {
       loadLink("http://e.adidonntu.ru/course/view.php?id=427");
     } else if (checkTime(date, startThirdPair, endThirdPair)) {
@@ -206,7 +206,7 @@ const checkCourse = () => {
   //////////////////////////////////////////////////////////////
   else if (day == 4) {
     if (checkTime(date, startFirstPair, endFirstPair)) {
-      loadLink("");
+      loadLink("http://e.adidonntu.ru/course/view.php?id=442");
     } else if (checkTime(date, startSecondPair, endSecondPair)) {
       loadLink("http://e.adidonntu.ru/course/view.php?id=498");
     } else if (checkTime(date, startThirdPair, endThirdPair)) {
@@ -218,13 +218,13 @@ const checkCourse = () => {
   //////////////////////////////////////////////////////////////
   else if (day == 5) {
     if (checkTime(date, startFirstPair, endFirstPair)) {
-      loadLink("");
+      loadLink("http://e.adidonntu.ru/course/view.php?id=203");
     } else if (checkTime(date, startSecondPair, endSecondPair)) {
-      loadLink("");
+      loadLink("http://e.adidonntu.ru/course/view.php?id=203");
     } else if (checkTime(date, startThirdPair, endThirdPair)) {
-      loadLink("");
+      loadLink("http://e.adidonntu.ru/course/view.php?id=461");
     } else if (checkTime(date, startFourthPair, endFourthPair)) {
-      loadLink("");
+      loadLink("http://e.adidonntu.ru/course/view.php?id=203");
     }
   }
 };
