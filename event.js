@@ -34,7 +34,7 @@ const checkVersion = () => {
       .catch((err) => {
         return err;
       });
-  }, 5000);
+  }, 600000);
 };
 
 window.addEventListener("load", function () {
