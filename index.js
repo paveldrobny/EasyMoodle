@@ -38,9 +38,9 @@ function createWindow() {
       webSecurity: true,
     },
   });
-  mainWindow.hide();
-  mainWindow.loadURL("https://paveldrobny.github.io/EasyMoodle/");
-  // mainWindow.loadFile("index.html");
+  //mainWindow.hide();
+ // mainWindow.loadURL("https://paveldrobny.github.io/EasyMoodle/");
+   mainWindow.loadFile("index.html");
    mainWindow.webContents.session.clearCache(() => {
   //   mainWindow.webContents.session.clearStorageData();
    });
