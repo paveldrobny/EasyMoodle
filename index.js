@@ -3,6 +3,8 @@ const path = require("path");
 const log = require("electron-log");
 const { autoUpdater } = require("electron-updater");
 
+
+
 let mainWindow, updateWindow;
 
 autoUpdater.logger = log;
@@ -36,14 +38,14 @@ function createWindow() {
       webSecurity: true,
     },
   });
-  //mainWindow.hide();
+  mainWindow.hide();
   mainWindow.loadURL("https://paveldrobny.github.io/EasyMoodle/");
-  mainWindow.webContents.session.clearCache(() => {
-    win.webContents.session.clearStorageData();
-  });
+  // mainWindow.loadFile("index.html");
+   mainWindow.webContents.session.clearCache(() => {
+  //   mainWindow.webContents.session.clearStorageData();
+   });
   mainWindow.webContents.session.clearStorageData();
   mainWindow.webContents.reloadIgnoringCache();
-  mainWindow.webContents.openDevTools();
 
   ipcMain.on("app-minimize", () => {
     mainWindow.minimize();

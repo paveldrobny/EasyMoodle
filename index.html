@@ -73,8 +73,8 @@
           <button id="view-devTools" class="nav-btn">
             <i class="fas fa-wrench"></i>
           </button>
-          <button id="view-appTools" class="nav-btn">
-            <i class="fas fa-window-maximize"></i>
+          <button id="view-split" class="nav-btn">
+            <i class="fas fa-columns"></i>
           </button>
         </div>
         <!-- <div class="menu-bar-center" id="page-title"></div> -->
@@ -84,7 +84,11 @@
         </div>
       </div>
     </div>
-    <webview id="web-view" src="http://e.adidonntu.ru/"></webview>
+
+    <div id="main-content">
+      <webview id="web-view" partition="persist:webview" src="http://e.adidonntu.ru/"></webview>
+      <webview id="web-view2" partition="persist:webview2" src="http://e.adidonntu.ru/"></webview>
+    </div>
     <div class="update-ready">
       Доступно обновлениe
       <button id="update-ready-button">Перезагрузить</button>
