@@ -151,21 +151,22 @@ body, html {
     z-index: 10;
     border-radius: 2px;
     color: white;
-    width: 65px;
+    width: 75px;
     height: 23px;
     margin: 0 11px;
     font-weight: bold;
-    transition: .15s;
+    transition: .26s;
     overflow: hidden;
+    text-align: right;
     background: rgb(0, 153, 255);
 }
 
 #timer-action.is-start {
-    width: 55px;
+    width: 70px;
 }
 
 #timer-action::after {
-    z-index: -1;
+    z-index: -2;
     position: absolute;
     content: "";
     top: 5px;
@@ -173,12 +174,12 @@ body, html {
     right: 5px;
     bottom: 5px;
     opacity: 0;
-    transition: .35s;
+    transition: .26s;
     border-radius: 50px;
 }
 
 #timer-action.is-start::after {
-    z-index: -1;
+    z-index: -2;
     position: absolute;
     content: "";
     top: 0px;
@@ -186,9 +187,36 @@ body, html {
     right: 0px;
     bottom: 0px;
     opacity: 1;
-    transition: .35s;
+    transition: .26s;
     border-radius: 0;
     background: rgb(182, 31, 31);
+}
+
+#timer-action::before {
+    z-index: -1;
+    position: absolute;
+    content: "";
+    left: 9px;
+    width: 10px;
+    height: 10px;
+    margin-top: 3px;
+    opacity: 1;
+    transition: .26s;
+    border-radius: 50px;
+    background: white;
+}
+
+#timer-action.is-start::before {
+    z-index: -1;
+    position: absolute;
+    content: "";
+    width: 15px;
+    left: 7px;
+    height: 15px;
+    margin-top:0;
+    transition: .26s;
+    border-radius: 3px;
+    background: white;
 }
 
 /* #timer-action.is-start {

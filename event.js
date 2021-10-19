@@ -22,7 +22,7 @@ const webView = document.getElementById("web-view"),
 
 const checkVersion = () => {
   setInterval(function () {
-    console.log(document.cookie)
+    console.log(document.cookie);
     fetch(URL)
       .then((res) => res.json())
       .then((out) => {
@@ -44,7 +44,7 @@ window.addEventListener("load", function () {
     .then((out) => {
       SITE_VERSION = out.commit.commit.author.date;
     });
-    
+
   checkVersion();
 });
 
@@ -100,6 +100,8 @@ timerAction.addEventListener("click", function () {
       let minutes = Math.floor(distance / 60);
       let seconds = Math.floor(distance % 60);
 
+ 
+
       remainingTime.innerHTML = `0${minutes}:${seconds}`;
 
       if (distance <= 0) {
@@ -141,26 +143,26 @@ viewDevTools.addEventListener("click", function () {
 });
 
 viewSplit.addEventListener("click", function () {
-  if(isSplit){
+  if (isSplit) {
     isSplit = false;
-    viewSplit.classList.remove("is-split")
+    viewSplit.classList.remove("is-split");
     splitDisable();
     return;
   }
   isSplit = true;
-  viewSplit.classList.add("is-split")
+  viewSplit.classList.add("is-split");
   splitEnable();
 });
 
 const splitEnable = () => {
-   webView.className = "split"
-   webView2.className = "split"
-}
+  webView.className = "split";
+  webView2.className = "split";
+};
 
 const splitDisable = () => {
-  webView.className = ""
-  webView2.className = ""
-}
+  webView.className = "";
+  webView2.className = "";
+};
 
 const loadLink = (target) => {
   webView.src = target;
@@ -173,6 +175,8 @@ const loadLink_2 = (target) => {
 const checkTime = (date, start, end) => {
   return date.getTime() > start.getTime() && date.getTime() < end.getTime();
 };
+
+
 
 const checkCourse = () => {
   const date = new Date(),
