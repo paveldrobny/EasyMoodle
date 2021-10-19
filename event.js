@@ -247,9 +247,9 @@ const checkCourse = () => {
   //////////////////////////////////////////////////////////////
   else if (day == 3) {
     if (checkTime(date, startFirstPair, endFirstPair)) {
-      loadLink("http://e.adidonntu.ru/course/view.php?id=536");
+      loadLink("http://e.adidonntu.ru/course/view.php?id=594");
       if (isSplit) {
-        loadLink_2("http://e.adidonntu.ru/course/view.php?id=536");
+        loadLink_2("http://e.adidonntu.ru/course/view.php?id=594");
       }
     } else if (checkTime(date, startSecondPair, endSecondPair)) {
       loadLink("http://e.adidonntu.ru/course/view.php?id=594");
