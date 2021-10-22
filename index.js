@@ -1,9 +1,7 @@
-const { app, BrowserWindow, ipcMain } = require("electron");
+const { app, BrowserWindow, ipcMain} = require("electron");
 const path = require("path");
 const log = require("electron-log");
 const { autoUpdater } = require("electron-updater");
-
-
 
 let mainWindow, updateWindow;
 
@@ -21,7 +19,7 @@ const sendStatusToWindow = (text) => {
 
 function createWindow() {
   const size = {
-    width: 860,
+    width: 900,
     height: 590,
   };
 
@@ -31,6 +29,7 @@ function createWindow() {
     minWidth: size.width,
     minHeight: size.height,
     frame: false,
+    backgroundColor: "#171717",
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
@@ -38,14 +37,17 @@ function createWindow() {
       webSecurity: true,
     },
   });
+
   //mainWindow.hide();
  // mainWindow.loadURL("https://paveldrobny.github.io/EasyMoodle/");
-   mainWindow.loadFile("index.html");
-   mainWindow.webContents.session.clearCache(() => {
-  //   mainWindow.webContents.session.clearStorageData();
-   });
+ mainWindow.loadFile("index.html");
+
+  mainWindow.webContents.session.clearCache(() => {
+     mainWindow.webContents.session.clearStorageData();
+  });
   mainWindow.webContents.session.clearStorageData();
   mainWindow.webContents.reloadIgnoringCache();
+  mainWindow.webContents.openDevTools();
 
   ipcMain.on("app-minimize", () => {
     mainWindow.minimize();
@@ -74,7 +76,7 @@ function createWindow() {
 
 function createUpdater() {
   const size = {
-    width: 300,
+    width: 330,
     height: 100,
   };
 
@@ -88,6 +90,8 @@ function createUpdater() {
     resizable: false,
     movable: false,
     frame: false,
+    show: false,
+    backgroundColor: "#171717",
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
@@ -95,6 +99,10 @@ function createUpdater() {
   });
 
   updateWindow.loadFile("update.html");
+
+  updateWindow.once("ready-to-show", () => {
+    updateWindow.show();
+  });
 }
 
 app.whenReady().then(() => {
