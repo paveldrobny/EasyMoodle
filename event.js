@@ -187,7 +187,7 @@ const DAY_2 = [
 ];
 
 const DAY_3 = [
-  "http://e.adidonntu.ru/course/view.php?id=594",
+  "http://e.adidonntu.ru/course/view.php?id=442",
   "http://e.adidonntu.ru/course/view.php?id=594",
   "http://e.adidonntu.ru/course/view.php?id=594",
   "http://e.adidonntu.ru/course/view.php?id=594",
