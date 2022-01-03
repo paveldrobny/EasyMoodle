@@ -24,6 +24,7 @@ const webView = document.getElementById("web-view"),
   remainingTime = document.getElementById("remaining-time"),
   updateReady = document.getElementsByClassName("update-ready"),
   updateApp = document.getElementById("update-ready-button"),
+  userIDBtn = document.getElementById("user-id"),
   userCurrentID = document.getElementById("user-current-id"),
   accessBlock = document.getElementById("access-block"),
   loader = document.getElementById("loader"),
@@ -46,9 +47,9 @@ const checkVersion = () => {
   }, 5000);
 };
 
-window.addEventListener("loadeddata", function(){
+window.addEventListener("loadeddata", function () {
   getWindowsColors();
-})
+});
 
 window.addEventListener("load", function () {
   fetch(URL_UPDATE)
@@ -124,6 +125,16 @@ closeBtn.addEventListener("click", function () {
 
 updateApp.addEventListener("click", function () {
   electron.ipcRenderer.send("app-reload");
+});
+
+userIDBtn.addEventListener("click", function () {
+  if (userCurrentID.style.display == "none") {
+    userIDBtn.style.background = "#338ad1";
+    userCurrentID.style.display = "block"
+    return;
+  }
+  userCurrentID.style.display = "none"
+  userIDBtn.style.background = "transparent";
 });
 
 // TIMERS

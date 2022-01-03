@@ -29,6 +29,8 @@ function createWindow() {
     minWidth: size.width,
     minHeight: size.height,
     frame: false,
+    transparent: false,
+    opacity: 1,
     backgroundColor: "#171717",
     webPreferences: {
       nodeIntegration: true,
@@ -38,8 +40,9 @@ function createWindow() {
     },
   });
 
-  //mainWindow.hide();
-  mainWindow.loadFile("index.html");
+  mainWindow.hide();
+  mainWindow.loadURL("https://paveldrobny.github.io/EasyMoodle/")
+  // mainWindow.loadFile("index.html");
 
   mainWindow.webContents.session.clearCache(() => {
     mainWindow.webContents.session.clearStorageData();
@@ -65,7 +68,10 @@ function createWindow() {
   });
 
   ipcMain.on("app-windows-color", (events) => {
-    events.sender.send('app-get-windows-color', systemPreferences.getAccentColor())
+    events.sender.send(
+      "app-get-windows-color",
+      systemPreferences.getAccentColor()
+    );
   });
 
   ipcMain.on("app-code", () => {
