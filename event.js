@@ -1,5 +1,9 @@
 const electron = window.require("electron");
-const URL =
+
+const os = require("os");
+import { USER_KEYS } from "./database.js";
+
+const URL_UPDATE =
   "https://api.github.com/repos/paveldrobny/EasyMoodle/branches/master";
 
 let SITE_VERSION = "";
@@ -9,7 +13,8 @@ const webView = document.getElementById("web-view"),
   minBtn = document.getElementById("min-btn"),
   maxBtn = document.getElementById("max-btn"),
   closeBtn = document.getElementById("close-btn"),
-  viewBack = document.getElementById("view-back"),
+  titleBarName = document.getElementsByClassName("title-bar-name"),
+  viewBack = document.getElementsByClassName("back-btn"),
   viewForward = document.getElementById("view-forward"),
   viewRefresh = document.getElementById("view-refresh"),
   viewHome = document.getElementById("view-home"),
@@ -18,11 +23,15 @@ const webView = document.getElementById("web-view"),
   timerAction = document.getElementById("timer-action"),
   remainingTime = document.getElementById("remaining-time"),
   updateReady = document.getElementsByClassName("update-ready"),
-  updateApp = document.getElementById("update-ready-button");
+  updateApp = document.getElementById("update-ready-button"),
+  userCurrentID = document.getElementById("user-current-id"),
+  accessBlock = document.getElementById("access-block"),
+  loader = document.getElementById("loader"),
+  loaderProgress = document.getElementById("loader-progress");
 
 const checkVersion = () => {
   setInterval(function () {
-    fetch(URL)
+    fetch(URL_UPDATE)
       .then((res) => res.json())
       .then((out) => {
         if (SITE_VERSION == out.commit.commit.author.date) {
@@ -37,15 +46,69 @@ const checkVersion = () => {
   }, 5000);
 };
 
+window.addEventListener("loadeddata", function(){
+  getWindowsColors();
+})
+
 window.addEventListener("load", function () {
-  fetch(URL)
+  fetch(URL_UPDATE)
     .then((res) => res.json())
     .then((out) => {
       SITE_VERSION = out.commit.commit.author.date;
     });
 
   checkVersion();
+
+  getWindowsColors();
+  getUserID();
+  checkDatabaseID();
 });
+
+const getUserID = () => {
+  const createID = (
+    os.hostname() +
+    os.userInfo().username +
+    os.cpus()[0].model +
+    os.cpus().length
+  )
+    .replace(/ /g, "")
+    .toLocaleLowerCase();
+
+  return createID;
+};
+
+const disableLoader = () => {
+  setTimeout(function () {
+    loader.style.display = "none";
+  }, 4000);
+};
+
+const checkDatabaseID = () => {
+  const userIDInput = document.getElementById("user-id-input");
+  userIDInput.value = getUserID();
+
+  for (let i = 0; i < USER_KEYS.length; i++) {
+    if (USER_KEYS[i] == getUserID()) {
+      disableLoader();
+      userCurrentID.style.display = "none";
+      accessBlock.style.display = "none";
+    } else {
+      disableLoader();
+      userCurrentID.style.display = "block";
+      accessBlock.style.display = "block";
+    }
+  }
+};
+
+const getWindowsColors = () => {
+  electron.ipcRenderer.send("app-windows-color");
+  electron.ipcRenderer.on("app-get-windows-color", (event, data) => {
+    if (os.release().indexOf("10.", 0) != -1) {
+      titleBarName[0].style.background = `#${data}`;
+      loaderProgress.style.background = `#${data}`;
+    }
+  });
+};
 
 minBtn.addEventListener("click", function () {
   electron.ipcRenderer.send("app-minimize");
@@ -74,13 +137,13 @@ const TIME_IN_MINUTES = 2;
 const TARGET_TIME = TIME_IN_MINUTES * 60;
 
 const startAction = () => {
-  timerAction.innerHTML = "СТОП";
   timerAction.classList.add("is-start");
+  remainingTime.classList.add("is-active");
 };
 
 const stopAction = () => {
-  timerAction.innerHTML = "СТАРТ";
   timerAction.classList.remove("is-start");
+  remainingTime.classList.remove("is-active");
 };
 
 timerAction.addEventListener("click", function () {
@@ -118,20 +181,20 @@ timerAction.addEventListener("click", function () {
   }
 });
 
-viewBack.addEventListener("click", function () {
+viewBack[0].addEventListener("click", function () {
   webView.goBack();
 });
 
-viewForward.addEventListener("click", function () {
-  webView.goForward();
+webView.addEventListener("did-navigate", function () {
+  if (webView.canGoBack()) {
+    viewBack[0].classList.add("is-active");
+  } else {
+    viewBack[0].classList.remove("is-active");
+  }
 });
 
 viewRefresh.addEventListener("click", function () {
-  webView.reload();
-});
-
-viewHome.addEventListener("click", function () {
-  loadLink("http://e.adidonntu.ru/");
+  electron.ipcRenderer.send("app-reload");
 });
 
 viewDevTools.addEventListener("click", function () {
@@ -150,14 +213,17 @@ viewSplit.addEventListener("click", function () {
   splitEnable();
 });
 
+const faColumns = document.getElementsByClassName("fa-columns");
 const splitEnable = () => {
   webView.className = "split";
   webView2.className = "split";
+  faColumns[0].style.transform = "rotate(45deg) scale(1.1)";
 };
 
 const splitDisable = () => {
   webView.className = "";
   webView2.className = "";
+  faColumns[0].style.transform = "rotate(0deg) scale(1)";
 };
 
 const loadLink = (target) => {
@@ -259,143 +325,3 @@ const checkCourse = () => {
   dayTemplate(4, DAY_4);
   dayTemplate(5, DAY_5);
 };
-
-// const checkCourse = () => {
-//   const date = new Date(),
-//     day = date.getDay(),
-//     mounth = date.getMonth(),
-//     _date = date.getDate(),
-//     //
-//     startFirstPair = new Date(2021, mounth, _date, 7, 55),
-//     endFirstPair = new Date(2021, mounth, _date, 9, 30),
-//     //
-//     startSecondPair = new Date(2021, mounth, _date, 9, 50),
-//     endSecondPair = new Date(2021, mounth, _date, 11, 25),
-//     //
-//     startThirdPair = new Date(2021, mounth, _date, 11, 40),
-//     endThirdPair = new Date(2021, mounth, _date, 13, 15),
-//     //
-//     startFourthPair = new Date(2021, mounth, _date, 13, 30),
-//     endFourthPair = new Date(2021, mounth, _date, 15, 0);
-
-//   //////////////////////////////////////////////////////////////
-//   if (day == 1) {
-//     if (checkTime(date, startFirstPair, endFirstPair)) {
-//       loadLink(DAY_1[0]);
-//       if (isSplit) {
-//         loadLink_2(DAY_1[0]);
-//       }
-//     } else if (checkTime(date, startSecondPair, endSecondPair)) {
-//       loadLink(DAY_1[1]);
-//       if (isSplit) {
-//         loadLink_2(DAY_1[1]);
-//       }
-//     } else if (checkTime(date, startThirdPair, endThirdPair)) {
-//       loadLink(DAY_1[2]);
-//       if (isSplit) {
-//         loadLink_2(DAY_1[2]);
-//       }
-//     } else if (checkTime(date, startFourthPair, endFourthPair)) {
-//       loadLink(DAY_1[3]);
-//       if (isSplit) {
-//         loadLink_2(DAY_1[3]);
-//       }
-//     }
-//   }
-//   //////////////////////////////////////////////////////////////
-//   else if (day == 2) {
-//     if (checkTime(date, startFirstPair, endFirstPair)) {
-//       loadLink(DAY_2[0]);
-//       if (isSplit) {
-//         loadLink_2(DAY_2[0]);
-//       }
-//     } else if (checkTime(date, startSecondPair, endSecondPair)) {
-//       loadLink(DAY_2[1]);
-//       if (isSplit) {
-//         loadLink_2(DAY_2[1]);
-//       }
-//     } else if (checkTime(date, startThirdPair, endThirdPair)) {
-//       loadLink(DAY_2[2]);
-//       if (isSplit) {
-//         loadLink_2(DAY_2[2]);
-//       }
-//     } else if (checkTime(date, startFourthPair, endFourthPair)) {
-//       loadLink(DAY_2[3]);
-//       if (isSplit) {
-//         loadLink_2(DAY_2[3]);
-//       }
-//     }
-//   }
-//   //////////////////////////////////////////////////////////////
-//   else if (day == 3) {
-//     if (checkTime(date, startFirstPair, endFirstPair)) {
-//       loadLink(DAY_3[0]);
-//       if (isSplit) {
-//         loadLink_2(DAY_3[0]);
-//       }
-//     } else if (checkTime(date, startSecondPair, endSecondPair)) {
-//       loadLink(DAY_3[1]);
-//       if (isSplit) {
-//         loadLink_2(DAY_3[1]);
-//       }
-//     } else if (checkTime(date, startThirdPair, endThirdPair)) {
-//       loadLink(DAY_3[2]);
-//       if (isSplit) {
-//         loadLink_2(DAY_3[2]);
-//       }
-//     } else if (checkTime(date, startFourthPair, endFourthPair)) {
-//       loadLink(DAY_3[3]);
-//       if (isSplit) {
-//         loadLink_2(DAY_3[3]);
-//       }
-//     }
-//   }
-//   //////////////////////////////////////////////////////////////
-//   else if (day == 4) {
-//     if (checkTime(date, startFirstPair, endFirstPair)) {
-//       loadLink(DAY_4[0]);
-//       if (isSplit) {
-//         loadLink_2(DAY_4[0]);
-//       }
-//     } else if (checkTime(date, startSecondPair, endSecondPair)) {
-//       loadLink(DAY_4[1]);
-//       if (isSplit) {
-//         loadLink_2(DAY_4[1]);
-//       }
-//     } else if (checkTime(date, startThirdPair, endThirdPair)) {
-//       loadLink(DAY_4[2]);
-//       if (isSplit) {
-//         loadLink_2(DAY_4[2]);
-//       }
-//     } else if (checkTime(date, startFourthPair, endFourthPair)) {
-//       loadLink(DAY_4[3]);
-//       if (isSplit) {
-//         loadLink_2(DAY_4[3]);
-//       }
-//     }
-//   }
-//   //////////////////////////////////////////////////////////////
-//   else if (day == 5) {
-//     if (checkTime(date, startFirstPair, endFirstPair)) {
-//       loadLink(DAY_5[0]);
-//       if (isSplit) {
-//         loadLink_2(DAY_5[0]);
-//       }
-//     } else if (checkTime(date, startSecondPair, endSecondPair)) {
-//       loadLink(DAY_5[1]);
-//       if (isSplit) {
-//         loadLink2(DAY_5[1]);
-//       }
-//     } else if (checkTime(date, startThirdPair, endThirdPair)) {
-//       loadLink(DAY_5[2]);
-//       if (isSplit) {
-//         loadLink_2(DAY_5[2]);
-//       }
-//     } else if (checkTime(date, startFourthPair, endFourthPair)) {
-//       loadLink(DAY_5[3]);
-//       if (isSplit) {
-//         loadLink_2(DAY_5[3]);
-//       }
-//     }
-//   }
-// };

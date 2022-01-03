@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain} = require("electron");
+const { app, BrowserWindow, ipcMain, systemPreferences } = require("electron");
 const path = require("path");
 const log = require("electron-log");
 const { autoUpdater } = require("electron-updater");
@@ -39,11 +39,10 @@ function createWindow() {
   });
 
   //mainWindow.hide();
-  mainWindow.loadURL("https://vk.com/");
-//  mainWindow.loadFile("index.html");
+  mainWindow.loadFile("index.html");
 
   mainWindow.webContents.session.clearCache(() => {
-     mainWindow.webContents.session.clearStorageData();
+    mainWindow.webContents.session.clearStorageData();
   });
   mainWindow.webContents.session.clearStorageData();
   mainWindow.webContents.reloadIgnoringCache();
@@ -63,6 +62,10 @@ function createWindow() {
 
   ipcMain.on("app-reload", () => {
     mainWindow.reload();
+  });
+
+  ipcMain.on("app-windows-color", (events) => {
+    events.sender.send('app-get-windows-color', systemPreferences.getAccentColor())
   });
 
   ipcMain.on("app-code", () => {
