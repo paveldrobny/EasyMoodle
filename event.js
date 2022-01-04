@@ -5,6 +5,7 @@ import { USER_KEYS } from "./database.js";
 
 const appVersion = require("./package.json").version;
 
+
 const URL_UPDATE =
   "https://api.github.com/repos/paveldrobny/EasyMoodle/branches/master";
 
