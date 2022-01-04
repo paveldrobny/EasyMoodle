@@ -3,6 +3,8 @@ const electron = window.require("electron");
 const os = require("os");
 import { USER_KEYS } from "./database.js";
 
+const appVersion = require("./package.json").version;
+
 const URL_UPDATE =
   "https://api.github.com/repos/paveldrobny/EasyMoodle/branches/master";
 
@@ -17,7 +19,7 @@ const webView = document.getElementById("web-view"),
   viewBack = document.getElementsByClassName("back-btn"),
   viewForward = document.getElementById("view-forward"),
   viewRefresh = document.getElementById("view-refresh"),
-  viewHome = document.getElementById("view-home"),
+  viewAbout = document.getElementById("view-about"),
   viewDevTools = document.getElementById("view-devTools"),
   viewSplit = document.getElementById("view-split"),
   timerAction = document.getElementById("timer-action"),
@@ -28,7 +30,8 @@ const webView = document.getElementById("web-view"),
   userCurrentID = document.getElementById("user-current-id"),
   accessBlock = document.getElementById("access-block"),
   loader = document.getElementById("loader"),
-  loaderProgress = document.getElementById("loader-progress");
+  loaderProgress = document.getElementById("loader-progress"),
+  aboutApp = document.getElementById("aboutApp");
 
 const checkVersion = () => {
   setInterval(function () {
@@ -86,7 +89,10 @@ const disableLoader = () => {
 
 const checkDatabaseID = () => {
   const userIDInput = document.getElementById("user-id-input");
+  const notNowID = document.getElementById("notNow-message-id");
+
   userIDInput.value = getUserID();
+  notNowID.innerHTML = `Ваш уникальный идентификатор: </br> ${getUserID()}`;
 
   for (let i = 0; i < USER_KEYS.length; i++) {
     if (USER_KEYS[i] == getUserID()) {
@@ -111,6 +117,14 @@ const getWindowsColors = () => {
   });
 };
 
+const getAboutVersion = () => {
+  const aboutVersionWindow = document.getElementById("aboutApp-window");
+  const aboutVersionUI = document.getElementById("aboutApp-ui");
+
+  aboutVersionWindow.innerHTML = `Версия окна: ${appVersion}`;
+  aboutVersionUI.innerHTML = `Версия интерфейса: ${SITE_VERSION}`;
+};
+
 minBtn.addEventListener("click", function () {
   electron.ipcRenderer.send("app-minimize");
 });
@@ -128,12 +142,16 @@ updateApp.addEventListener("click", function () {
 });
 
 userIDBtn.addEventListener("click", function () {
+  if (aboutApp.style.display == "block") {
+    aboutApp.style.display = "none";
+    viewAbout.style.background = "transparent";
+  }
   if (userCurrentID.style.display == "none") {
-    userIDBtn.style.background = "#338ad1";
-    userCurrentID.style.display = "block"
+    userIDBtn.style.background = "#2f53a8";
+    userCurrentID.style.display = "block";
     return;
   }
-  userCurrentID.style.display = "none"
+  userCurrentID.style.display = "none";
   userIDBtn.style.background = "transparent";
 });
 
@@ -206,6 +224,21 @@ webView.addEventListener("did-navigate", function () {
 
 viewRefresh.addEventListener("click", function () {
   electron.ipcRenderer.send("app-reload");
+});
+
+viewAbout.addEventListener("click", function () {
+  if (userCurrentID.style.display == "block") {
+    userCurrentID.style.display = "none";
+    userIDBtn.style.background = "transparent";
+  }
+  if (aboutApp.style.display == "block") {
+    aboutApp.style.display = "none";
+    viewAbout.style.background = "transparent";
+    return;
+  }
+  aboutApp.style.display = "block";
+  viewAbout.style.background = "#2f53a8";
+  getAboutVersion();
 });
 
 viewDevTools.addEventListener("click", function () {

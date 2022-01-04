@@ -82,6 +82,11 @@
           </button>
         </div>
         <div class="left-button">
+          <button id="view-about" class="nav-btn no-draggable">
+            <i class="far fa-newspaper"></i>
+          </button>
+        </div>
+        <div class="left-button">
           <button id="view-devTools" class="nav-btn no-draggable">
             <i class="fas fa-wrench"></i>
           </button>
@@ -116,6 +121,11 @@
        <input class="user-id-get" id="user-id-input" value="{id}"></input>
        <div class="user-id-description">* Это окно можно открыть снова, нажав на <i class="fas fa-user"></i></div>
     </div>
+    <div id="aboutApp">
+      <div id="aboutApp-title">О Easy ADI</div>
+      <div id="aboutApp-window" class="aboutApp-sub-text">Версия окна: загрузка...</div>
+      <div id="aboutApp-ui" class="aboutApp-sub-text">Версия интерфейса: загрузка...</div>
+    </div>
     <div id="access-block">
        <div id="access-block-message">
          Для входа, нужен занесенный ваш уникальный идентификатор в базу.
@@ -127,6 +137,10 @@
     </div> -->
     <div id="loader">
        <div id="loader-progress"></div>
+    </div>
+    <div id="notNow">
+      <div id="notNow-message">На данный момент дистанционного обучения нет <span id="notNow-smile">:(</span></div>
+      <div id="notNow-message-id">{id}</div>
     </div>
     <script src="./event.js" type="module"></script>
   </body>

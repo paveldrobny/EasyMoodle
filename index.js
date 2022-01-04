@@ -40,9 +40,9 @@ function createWindow() {
     },
   });
 
-  mainWindow.hide();
-  mainWindow.loadURL("https://paveldrobny.github.io/EasyMoodle/")
-  // mainWindow.loadFile("index.html");
+  //mainWindow.hide();
+  //mainWindow.loadURL("https://paveldrobny.github.io/EasyMoodle/")
+   mainWindow.loadFile("index.html");
 
   mainWindow.webContents.session.clearCache(() => {
     mainWindow.webContents.session.clearStorageData();
@@ -50,7 +50,7 @@ function createWindow() {
   mainWindow.webContents.session.clearStorageData();
   mainWindow.webContents.reloadIgnoringCache();
 
-  // mainWindow.webContents.openDevTools();
+  mainWindow.webContents.openDevTools();
 
   ipcMain.on("app-minimize", () => {
     mainWindow.minimize();
