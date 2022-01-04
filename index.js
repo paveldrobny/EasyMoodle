@@ -51,7 +51,7 @@ function createWindow() {
   mainWindow.webContents.reloadIgnoringCache();
 
   ////////////////////////////////////////////////
-  //mainWindow.webContents.openDevTools();
+  mainWindow.webContents.openDevTools();
 
   ipcMain.on("app-minimize", () => {
     mainWindow.minimize();

@@ -3,8 +3,6 @@ const electron = window.require("electron");
 const os = require("os");
 import { USER_KEYS } from "./database.js";
 
-const appVersion = require("./package.json").version;
-
 const URL_UPDATE =
   "https://api.github.com/repos/paveldrobny/EasyMoodle/branches/master";
 
@@ -121,7 +119,6 @@ const getAboutVersion = () => {
   const aboutVersionWindow = document.getElementById("aboutApp-window");
   const aboutVersionUI = document.getElementById("aboutApp-ui");
 
-  aboutVersionWindow.innerHTML = `Версия окна: ${appVersion}`;
   aboutVersionUI.innerHTML = `Версия интерфейса: ${SITE_VERSION}`;
 };
 
