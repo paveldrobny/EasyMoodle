@@ -332,6 +332,7 @@ body, html {
     top: 33px;
     height: 18px;
     text-align: center;
+    overflow: hidden;
     font-size: 17px;
     letter-spacing: 1px;
     color: rgb(235, 235, 235);
