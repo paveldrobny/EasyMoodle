@@ -1,2 +1,2 @@
 # EasyMoodle
-(Get last version)[https://github.com/paveldrobny/EasyMoodle/releases/latest]
+[Get last version](https://github.com/paveldrobny/EasyMoodle/releases/latest)
