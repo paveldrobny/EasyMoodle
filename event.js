@@ -5,7 +5,7 @@ const os = require("os");
 
 const URL_UPDATE =
   "https://api.github.com/repos/paveldrobny/EasyMoodle/branches/master";
-const CHECK_VERSION_MINUTES = 10;
+const CHECK_VERSION_MINUTES = 5;
 
 let UI_VERSION = "";
 
@@ -83,7 +83,7 @@ const getUserID = () => {
 const disableLoader = () => {
   setTimeout(function () {
     loader.style.display = "none";
-  }, 4000);
+  }, 2000);
 };
 
 const checkDatabaseID = () => {
