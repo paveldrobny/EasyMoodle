@@ -341,12 +341,12 @@ body, html {
 .update-ready {
     z-index: 999;
     position: relative;
-    width: 255px;
+    width: 278px;
     margin: 0 auto;
     bottom: -55px;
     text-align: center;
     padding: 4px 4px 4px 10px;
-    font-size: 13px;
+    font-size: 15px;
     color: white;
     border-radius: 8px;
     transition: .3s;
@@ -363,7 +363,7 @@ body, html {
 }
 
 .is-show {
-    bottom: 55px;
+    bottom: 60px;
 }
 
 .left-btn-reload {
@@ -441,7 +441,7 @@ body, html {
 
 #notNow {
     z-index: 999999;
-    display: block;
+    display: none;
     position: absolute;
     top: 1px;
     left: 1px;
@@ -521,9 +521,10 @@ body, html {
     top: 50%;
     left: 50%;
     width: auto;
-    height: 115px;
     transform: translate(-50%, -50%);
-    border: 1px solid rgb(102, 102, 102);
+    border: 1px solid rgb(92, 92, 92);
+    padding: 15px;
+    border-radius: 5px;
     box-shadow: 0 0 20px 4px;
     background: var(--title-bar-color);
 }
@@ -531,7 +532,7 @@ body, html {
 #aboutApp-title {
     text-align: center;
     font-size: 18px;
-    padding: 10px 0 20px 0;
+    padding: 0 0 20px 0;
     font-weight: bold;
     letter-spacing: 1px;
     color: rgb(236, 236, 236);

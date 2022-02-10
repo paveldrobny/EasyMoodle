@@ -1,42 +1,43 @@
-const electron = window.require("electron");
+import { USER_KEYS, USER_KEYS_BLOCK } from "./database.js";
 
+const electron = window.require("electron");
 const os = require("os");
-import { USER_KEYS } from "./database.js";
 
 const URL_UPDATE =
   "https://api.github.com/repos/paveldrobny/EasyMoodle/branches/master";
+const CHECK_VERSION_MINUTES = 10;
 
-let SITE_VERSION = "";
+let UI_VERSION = "";
 
-const webView = document.getElementById("web-view"),
-  webView2 = document.getElementById("web-view2"),
-  minBtn = document.getElementById("min-btn"),
-  maxBtn = document.getElementById("max-btn"),
-  closeBtn = document.getElementById("close-btn"),
-  titleBarName = document.getElementsByClassName("title-bar-name"),
-  viewBack = document.getElementsByClassName("back-btn"),
-  viewForward = document.getElementById("view-forward"),
-  viewRefresh = document.getElementById("view-refresh"),
-  viewAbout = document.getElementById("view-about"),
-  viewDevTools = document.getElementById("view-devTools"),
-  viewSplit = document.getElementById("view-split"),
-  timerAction = document.getElementById("timer-action"),
-  remainingTime = document.getElementById("remaining-time"),
-  updateReady = document.getElementsByClassName("update-ready"),
-  updateApp = document.getElementById("update-ready-button"),
-  userIDBtn = document.getElementById("user-id"),
-  userCurrentID = document.getElementById("user-current-id"),
-  accessBlock = document.getElementById("access-block"),
-  loader = document.getElementById("loader"),
-  loaderProgress = document.getElementById("loader-progress"),
-  aboutApp = document.getElementById("aboutApp");
+const webView = document.getElementById("web-view");
+const webView2 = document.getElementById("web-view2");
+const minBtn = document.getElementById("min-btn");
+const maxBtn = document.getElementById("max-btn");
+const closeBtn = document.getElementById("close-btn");
+const titleBarName = document.getElementsByClassName("title-bar-name");
+const viewBack = document.getElementsByClassName("back-btn");
+const viewRefresh = document.getElementById("view-refresh");
+const viewAbout = document.getElementById("view-about");
+const viewDevTools = document.getElementById("view-devTools");
+const viewSplit = document.getElementById("view-split");
+const timerAction = document.getElementById("timer-action");
+const remainingTime = document.getElementById("remaining-time");
+const updateReady = document.getElementsByClassName("update-ready");
+const updateApp = document.getElementById("update-ready-button");
+const userIDBtn = document.getElementById("user-id");
+const userCurrentID = document.getElementById("user-current-id");
+const accessBlock = document.getElementById("access-block");
+const loader = document.getElementById("loader");
+const loaderProgress = document.getElementById("loader-progress");
+const aboutApp = document.getElementById("aboutApp");
+const faColumns = document.getElementsByClassName("fa-columns");
 
 const checkVersion = () => {
   setInterval(function () {
     fetch(URL_UPDATE)
       .then((res) => res.json())
       .then((out) => {
-        if (SITE_VERSION == out.commit.commit.author.date) {
+        if (UI_VERSION == out.commit.commit.author.date) {
           updateReady[0].classList.remove("is-show");
         } else {
           updateReady[0].classList.add("is-show");
@@ -45,7 +46,7 @@ const checkVersion = () => {
       .catch((err) => {
         return err;
       });
-  }, 5000);
+  }, CHECK_VERSION_MINUTES * 1000 * 60);
 };
 
 window.addEventListener("loadeddata", function () {
@@ -56,7 +57,7 @@ window.addEventListener("load", function () {
   fetch(URL_UPDATE)
     .then((res) => res.json())
     .then((out) => {
-      SITE_VERSION = out.commit.commit.author.date;
+      UI_VERSION = out.commit.commit.author.date;
     });
 
   checkVersion();
@@ -92,16 +93,14 @@ const checkDatabaseID = () => {
   userIDInput.value = getUserID();
   notNowID.innerHTML = `Ваш уникальный идентификатор: </br> ${getUserID()}`;
 
-  for (let i = 0; i < USER_KEYS.length; i++) {
-    if (USER_KEYS[i] == getUserID()) {
-      disableLoader();
-      userCurrentID.style.display = "none";
-      accessBlock.style.display = "none";
-    } else {
-      disableLoader();
-      userCurrentID.style.display = "block";
-      accessBlock.style.display = "block";
-    }
+  if (USER_KEYS.includes(getUserID())) {
+    disableLoader();
+    userCurrentID.style.display = "none";
+    accessBlock.style.display = "none";
+  } else {
+    disableLoader();
+    userCurrentID.style.display = "block";
+    accessBlock.style.display = "block";
   }
 };
 
@@ -119,7 +118,7 @@ const getAboutVersion = () => {
   const aboutVersionWindow = document.getElementById("aboutApp-window");
   const aboutVersionUI = document.getElementById("aboutApp-ui");
 
-  aboutVersionUI.innerHTML = `Версия интерфейса: ${SITE_VERSION}`;
+  aboutVersionUI.innerHTML = `Версия интерфейса: ${UI_VERSION}`;
 };
 
 minBtn.addEventListener("click", function () {
@@ -153,11 +152,10 @@ userIDBtn.addEventListener("click", function () {
 });
 
 // TIMERS
-let isStart = false,
-  timer,
-  courseTimer;
-
-var isSplit = false;
+let isStart = false;
+let timer;
+let courseTimer;
+let isSplit = false;
 
 const TIME_IN_MINUTES = 2;
 const TARGET_TIME = TIME_IN_MINUTES * 60;
@@ -243,18 +241,21 @@ viewDevTools.addEventListener("click", function () {
 });
 
 viewSplit.addEventListener("click", function () {
-  if (isSplit) {
-    isSplit = false;
-    viewSplit.classList.remove("is-split");
-    splitDisable();
-    return;
+  if (!USER_KEYS_BLOCK.includes(getUserID())) {
+    if (isSplit) {
+      isSplit = false;
+      viewSplit.classList.remove("is-split");
+      splitDisable();
+    } else {
+      isSplit = true;
+      viewSplit.classList.add("is-split");
+      splitEnable();
+    }
+  } else {
+    alert("Функция 'Split screen' недоступна для вашего ID");
   }
-  isSplit = true;
-  viewSplit.classList.add("is-split");
-  splitEnable();
 });
 
-const faColumns = document.getElementsByClassName("fa-columns");
 const splitEnable = () => {
   webView.className = "split";
   webView2.className = "split";
@@ -283,35 +284,35 @@ const DAY_1 = [
   "http://e.adidonntu.ru/course/view.php?id=377",
   "http://e.adidonntu.ru/course/view.php?id=377",
   "http://e.adidonntu.ru/course/view.php?id=536",
-  "http://e.adidonntu.ru/course/view.php?id=667",
+  "http://e.adidonntu.ru/course/view.php?id=667"
 ];
 
 const DAY_2 = [
   "http://e.adidonntu.ru/course/view.php?id=442",
   "http://e.adidonntu.ru/course/view.php?id=427",
   "http://e.adidonntu.ru/course/view.php?id=667",
-  "http://e.adidonntu.ru/course/view.php?id=427",
+  "http://e.adidonntu.ru/course/view.php?id=427"
 ];
 
 const DAY_3 = [
   "http://e.adidonntu.ru/course/view.php?id=442",
   "http://e.adidonntu.ru/course/view.php?id=594",
   "http://e.adidonntu.ru/course/view.php?id=594",
-  "http://e.adidonntu.ru/course/view.php?id=594",
+  "http://e.adidonntu.ru/course/view.php?id=594"
 ];
 
 const DAY_4 = [
   "http://e.adidonntu.ru/course/view.php?id=442",
   "http://e.adidonntu.ru/course/view.php?id=498",
   "http://e.adidonntu.ru/course/view.php?id=461",
-  "http://e.adidonntu.ru/course/view.php?id=498",
+  "http://e.adidonntu.ru/course/view.php?id=498"
 ];
 
 const DAY_5 = [
   "http://e.adidonntu.ru/course/view.php?id=203",
   "http://e.adidonntu.ru/course/view.php?id=203",
   "http://e.adidonntu.ru/course/view.php?id=461",
-  "http://e.adidonntu.ru/course/view.php?id=203",
+  "http://e.adidonntu.ru/course/view.php?id=203"
 ];
 
 const dayTemplate = (numDay, subject) => {

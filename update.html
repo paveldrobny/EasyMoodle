@@ -29,8 +29,8 @@
       }, 2000);
 
       electron.ipcRenderer.on("message", function (event, text) {
-        var container = document.getElementById("messages-content");
-        var message = document.createElement("div");
+        let container = document.getElementById("messages-content");
+        let message = document.createElement("div");
         message.innerHTML = text;
         container.appendChild(message);
       });

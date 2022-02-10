@@ -20,7 +20,7 @@ const sendStatusToWindow = (text) => {
 function createWindow() {
   const size = {
     width: 900,
-    height: 590,
+    height: 590
   };
 
   mainWindow = new BrowserWindow({
@@ -36,13 +36,13 @@ function createWindow() {
       nodeIntegration: true,
       contextIsolation: false,
       webviewTag: true,
-      webSecurity: true,
-    },
+      webSecurity: true
+    }
   });
 
-  mainWindow.hide();
-  mainWindow.loadURL("https://paveldrobny.github.io/EasyMoodle/")
-   //mainWindow.loadFile("index.html");
+  //mainWindow.hide();
+  //mainWindow.loadURL("https://paveldrobny.github.io/EasyMoodle/")
+  mainWindow.loadFile("index.html");
 
   mainWindow.webContents.session.clearCache(() => {
     mainWindow.webContents.session.clearStorageData();
@@ -88,7 +88,7 @@ function createWindow() {
 function createUpdater() {
   const size = {
     width: 330,
-    height: 100,
+    height: 100
   };
 
   updateWindow = new BrowserWindow({
@@ -105,8 +105,8 @@ function createUpdater() {
     backgroundColor: "#171717",
     webPreferences: {
       nodeIntegration: true,
-      contextIsolation: false,
-    },
+      contextIsolation: false
+    }
   });
 
   updateWindow.loadFile("update.html");
