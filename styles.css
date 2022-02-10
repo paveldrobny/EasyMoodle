@@ -69,6 +69,7 @@ body, html {
     top: -6px;
     padding: 5px 8px;
     text-shadow: 1px 0px 5px rgb(0, 0, 0);
+    background: rgb(123, 122, 185);
 }
 
 .back-btn {
@@ -502,6 +503,7 @@ body, html {
     animation-duration: 1s;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
+    background: rgb(123, 122, 185);
 }
 
 @keyframes rotate {
