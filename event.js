@@ -321,17 +321,17 @@ const dayTemplate = (numDay, subject) => {
     mounth = date.getMonth(),
     _date = date.getDate(),
     //
-    startFirstPair = new Date(2021, mounth, _date, 7, 55),
-    endFirstPair = new Date(2021, mounth, _date, 9, 30),
+    startFirstPair = new Date(2022, mounth, _date, 7, 55),
+    endFirstPair = new Date(2022, mounth, _date, 9, 30),
     //
-    startSecondPair = new Date(2021, mounth, _date, 9, 50),
-    endSecondPair = new Date(2021, mounth, _date, 11, 25),
+    startSecondPair = new Date(2022, mounth, _date, 9, 50),
+    endSecondPair = new Date(2022, mounth, _date, 11, 25),
     //
-    startThirdPair = new Date(2021, mounth, _date, 11, 40),
-    endThirdPair = new Date(2021, mounth, _date, 13, 15),
+    startThirdPair = new Date(2022, mounth, _date, 11, 40),
+    endThirdPair = new Date(2022, mounth, _date, 13, 15),
     //
-    startFourthPair = new Date(2021, mounth, _date, 13, 30),
-    endFourthPair = new Date(2021, mounth, _date, 15, 0);
+    startFourthPair = new Date(2022, mounth, _date, 13, 30),
+    endFourthPair = new Date(2022, mounth, _date, 15, 0);
 
   //////////////////////////////////////////////////////////////
   if (day == numDay) {
