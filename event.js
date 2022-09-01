@@ -281,38 +281,38 @@ const checkTime = (date, start, end) => {
 };
 
 const DAY_1 = [
-  "http://e.adidonntu.ru/course/view.php?id=377",
-  "http://e.adidonntu.ru/course/view.php?id=377",
-  "http://e.adidonntu.ru/course/view.php?id=536",
-  "http://e.adidonntu.ru/course/view.php?id=667"
+  "http://e.adidonntu.ru/course/view.php?id=577",
+  "http://e.adidonntu.ru/course/view.php?id=577",
+  "http://e.adidonntu.ru/course/view.php?id=577",
+  "http://e.adidonntu.ru/course/view.php?id=577"
 ];
 
 const DAY_2 = [
-  "http://e.adidonntu.ru/course/view.php?id=442",
-  "http://e.adidonntu.ru/course/view.php?id=427",
-  "http://e.adidonntu.ru/course/view.php?id=667",
+  "http://e.adidonntu.ru/course/view.php?id=311",
+  "http://e.adidonntu.ru/course/view.php?id=816",
+  "http://e.adidonntu.ru/course/view.php?id=309",
   "http://e.adidonntu.ru/course/view.php?id=427"
 ];
 
 const DAY_3 = [
-  "http://e.adidonntu.ru/course/view.php?id=442",
-  "http://e.adidonntu.ru/course/view.php?id=594",
-  "http://e.adidonntu.ru/course/view.php?id=594",
-  "http://e.adidonntu.ru/course/view.php?id=594"
+  "http://e.adidonntu.ru/course/view.php?id=211",
+  "http://e.adidonntu.ru/course/view.php?id=211",
+  "http://e.adidonntu.ru/course/view.php?id=309",
+  "http://e.adidonntu.ru/course/view.php?id=309"
 ];
 
 const DAY_4 = [
-  "http://e.adidonntu.ru/course/view.php?id=442",
-  "http://e.adidonntu.ru/course/view.php?id=498",
-  "http://e.adidonntu.ru/course/view.php?id=461",
-  "http://e.adidonntu.ru/course/view.php?id=498"
+  "http://e.adidonntu.ru/course/view.php?id=211",
+  "http://e.adidonntu.ru/course/view.php?id=929",
+  "http://e.adidonntu.ru/course/view.php?id=929",
+  "http://e.adidonntu.ru/course/view.php?id=929"
 ];
 
 const DAY_5 = [
-  "http://e.adidonntu.ru/course/view.php?id=203",
-  "http://e.adidonntu.ru/course/view.php?id=203",
-  "http://e.adidonntu.ru/course/view.php?id=461",
-  "http://e.adidonntu.ru/course/view.php?id=203"
+  "http://e.adidonntu.ru/course/view.php?id=286",
+  "http://e.adidonntu.ru/course/view.php?id=309",
+  "http://e.adidonntu.ru/course/view.php?id=309",
+  "http://e.adidonntu.ru/course/view.php?id=309"
 ];
 
 const dayTemplate = (numDay, subject) => {
