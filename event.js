@@ -281,38 +281,38 @@ const checkTime = (date, start, end) => {
 };
 
 const DAY_1 = [
-  "http://e.adidonntu.ru/course/view.php?id=577",
-  "http://e.adidonntu.ru/course/view.php?id=577",
-  "http://e.adidonntu.ru/course/view.php?id=838",
-  "http://e.adidonntu.ru/course/view.php?id=577"
+  "",
+  "",
+  "",
+  ""
 ];
 
 const DAY_2 = [
-  "http://e.adidonntu.ru/course/view.php?id=311",
-  "http://e.adidonntu.ru/course/view.php?id=816",
-  "http://e.adidonntu.ru/course/view.php?id=309",
-  "http://e.adidonntu.ru/course/view.php?id=753"
+  "",
+  "",
+  "",
+  ""
 ];
 
 const DAY_3 = [
-  "http://e.adidonntu.ru/course/view.php?id=211",
-  "http://e.adidonntu.ru/course/view.php?id=211",
-  "http://e.adidonntu.ru/course/view.php?id=929", //"http://e.adidonntu.ru/course/view.php?id=311",
-  "http://e.adidonntu.ru/course/view.php?id=309"
+  "http://e.adidonntu.ru/course/view.php?id=290",
+  "",
+  "http://e.adidonntu.ru/course/view.php?id=392",
+  "http://e.adidonntu.ru/course/view.php?id=392"
 ];
 
 const DAY_4 = [
-  "http://e.adidonntu.ru/course/view.php?id=211",
-  "http://e.adidonntu.ru/course/view.php?id=929",
-  "http://e.adidonntu.ru/course/view.php?id=753",
-  "http://e.adidonntu.ru/course/view.php?id=753"
+  "",
+  "http://e.adidonntu.ru/course/view.php?id=290",
+  "http://e.adidonntu.ru/course/view.php?id=290",
+  ""
 ];
 
 const DAY_5 = [
-  "http://e.adidonntu.ru/course/view.php?id=286",
-  "http://e.adidonntu.ru/course/view.php?id=838",
-  "http://e.adidonntu.ru/course/view.php?id=309",
-  "http://e.adidonntu.ru/course/view.php?id=309"
+  "http://e.adidonntu.ru/course/view.php?id=392",
+  "http://e.adidonntu.ru/course/view.php?id=392",
+  "http://e.adidonntu.ru/course/view.php?id=290",
+  ""
 ];
 
 const dayTemplate = (numDay, subject) => {
