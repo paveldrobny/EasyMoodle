@@ -1,0 +1,66 @@
+[
+  {
+    "id": 1,
+    "header": "Новость 1",
+    "desc": "Описание новости 1",
+    "image": "https://picsum.photos/700",
+    "blocks": [
+      {
+        "id": "n1_b1",
+        "type": "paragraph",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 🤓"
+      },
+      {
+        "id": "n1_b2",
+        "type": "paragraph",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      },
+      {
+        "id": "n1_b3",
+        "type": "list",
+        "items": [
+          "Список Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+          "Список Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+          "Список Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor."
+        ]
+      },
+      {
+        "id": "n1_b4",
+        "type": "image",
+        "src": "https://picsum.photos/700"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "header": "Новость 2",
+    "desc": "Описание новости 2",
+    "image": "https://picsum.photos/700",
+    "blocks": [
+      {
+        "id": "n2_b1",
+        "type": "paragraph",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 🤓"
+      },
+      {
+        "id": "n2_b4",
+        "type": "image",
+        "src": "https://picsum.photos/700"
+      },
+      {
+        "id": "n2_b2",
+        "type": "paragraph",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      },
+      {
+        "id": "n2_b3",
+        "type": "list",
+        "items": [
+          "Список Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+          "Список Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+          "Список Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor."
+        ]
+      }
+    ]
+  }
+]
