@@ -1,6 +1,7 @@
 [
   {
     "id": 1,
+    "type": "normal",
     "header": "Новость 1",
     "desc": "Описание новости 1",
     "image": "https://picsum.photos/700",
@@ -33,9 +34,9 @@
   },
   {
     "id": 2,
-    "header": "Новость 2",
-    "desc": "Описание новости 2",
-    "image": "https://picsum.photos/700",
+    "type": "notify",
+    "header": "Уведомление",
+    "desc": "Описание уведомления",
     "blocks": [
       {
         "id": "n2_b1",
@@ -43,17 +44,36 @@
         "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 🤓"
       },
       {
-        "id": "n2_b4",
+        "id": "n2_b2",
+        "type": "paragraph",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      }
+    ]
+  }
+  {
+    "id": 3,
+    "type": "normal",
+    "header": "Новость 3",
+    "desc": "Описание новости 3",
+    "image": "https://picsum.photos/700",
+    "blocks": [
+      {
+        "id": "n3_b1",
+        "type": "paragraph",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 🤓"
+      },
+      {
+        "id": "n3_b4",
         "type": "image",
         "src": "https://picsum.photos/700"
       },
       {
-        "id": "n2_b2",
+        "id": "n3_b2",
         "type": "paragraph",
         "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
       },
       {
-        "id": "n2_b3",
+        "id": "n3_b3",
         "type": "list",
         "items": [
           "Список Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -62,5 +82,5 @@
         ]
       }
     ]
-  }
+  },
 ]
