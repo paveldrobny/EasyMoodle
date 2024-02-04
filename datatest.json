@@ -4,7 +4,7 @@
     "type": "normal",
     "header": "Новость 1",
     "desc": "Описание новости 1",
-    "image": "https://picsum.photos/700",
+    "image": "https://sun9-26.userapi.com/gCrjDNGerGGh3mzEoD-zr5GVRenUpPnshV9cXg/nUhBdGjrSPI.jpg",
     "blocks": [
       {
         "id": "n1_b1",
@@ -28,7 +28,7 @@
       {
         "id": "n1_b4",
         "type": "image",
-        "src": "https://picsum.photos/700"
+        "src": "https://sun9-26.userapi.com/gCrjDNGerGGh3mzEoD-zr5GVRenUpPnshV9cXg/nUhBdGjrSPI.jpg"
       }
     ]
   },
@@ -37,6 +37,7 @@
     "type": "notify",
     "header": "Уведомление",
     "desc": "Описание уведомления",
+    "image": "",
     "blocks": [
       {
         "id": "n2_b1",
@@ -55,7 +56,7 @@
     "type": "normal",
     "header": "Новость 3",
     "desc": "Описание новости 3",
-    "image": "https://picsum.photos/700",
+    "image": "https://w.forfun.com/fetch/64/648f78e8f90a9d357881b3a7f5996677.jpeg?w=1470&r=0.5625",
     "blocks": [
       {
         "id": "n3_b1",
@@ -65,7 +66,7 @@
       {
         "id": "n3_b4",
         "type": "image",
-        "src": "https://picsum.photos/700"
+        "src": "https://w.forfun.com/fetch/64/648f78e8f90a9d357881b3a7f5996677.jpeg?w=1470&r=0.5625"
       },
       {
         "id": "n3_b2",
